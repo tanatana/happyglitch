@@ -1,9 +1,28 @@
 extends layout
 
 block content
-  h1= title
-  input(id="msg", type="text", value='')
-  input(id='send', type='button', value='send')
+  div(class="navbar")
+    div(class="navbar-inner")
+      div(class="container")
+        a(class="brand",href="/")= 'Glithappy'
+ 
+  div(class='container')
+    div(class='row')
+      div(class='span8 offset2')
+        h1= 'Glitchappy'
+    div(class='row')
+      div(class='span8 offset2', id='dropbox')
+        canvas(style="width: 100%;height: 500px;", data-canvas-id="0")
+        canvas(style="width: 100%;height: 500px;", data-canvas-id="1")
+        canvas(style="width: 100%;height: 500px;", data-canvas-id="2")
+        canvas(style="width: 100%;height: 500px;", data-canvas-id="3")
+        canvas(style="width: 100%;height: 500px;", data-canvas-id="4")
 
-  ul(id='log')
+      
+  // h1= title
+  // input(id="msg", type="text", value='')
+  // input(id='send', type='button', value='send')
 
+  // ul(id='log')
+    
+  

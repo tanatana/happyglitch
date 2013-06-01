@@ -30,7 +30,7 @@ app.get('/', routes.index);
 // app.get('/users', user.list);
 
 var server = http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+    console.log('Express server listening on port ' + app.get('port'));
 });
 
 var io = require('socket.io').listen(server);
@@ -40,10 +40,16 @@ io.configure(function(){
     io.set('polling duration', 10);
 });
 
+
+// エコー
 io.sockets.on('connection', function(socket){
     socket.on('post', function(data){
         io.sockets.emit('posted', {
             message : data
         });
+    });
+    socket.on('upload', function(data){
+        console.log('image uploaded');
+        io.sockets.emit('uploaded', data);
     });
 });
