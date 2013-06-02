@@ -189,7 +189,9 @@
         $('#logo').attr({'src': logosrc});
         // for File API
         jQuery.event.props.push('dataTransfer');
+
         windowResize();
+        
         var socket = SocketCtrl();
         var dropbox = Dropbox(socket);
         $(window).resize(function(e){
