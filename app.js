@@ -40,12 +40,19 @@ io.configure(function(){
     io.set('polling duration', 10);
 });
 
+var imgData = [];
+var imgId   = 0;
 
 // エコー
 io.sockets.on('connection', function(socket){
+    socket.emit('assets', {'images': imgData });
     socket.on('upload', function(data){
-        console.log('image uploaded');
-        data.file = data.file.replace(/10/g , '11');
+        data.file        = data.file.replace(/10/g , '11');
+        imgData[imgId] = data.file;
+        data.id          = imgId;
         io.sockets.emit('uploaded', data);
+
+        imgId += 1;
+        if(imgId >= 7){imgId = 0;}
     });
 });
