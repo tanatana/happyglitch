@@ -90,23 +90,26 @@
                 fileReader.readAsDataURL(sendFile);
                 fileReader.onload = (function(e){
                     console.log('fr.onload :' + (new Date()).getTime());
+                    if(sendFile.type != "image/jpeg"){
 
-                    // ImageResize
-                    $.canvasResize(sendFile, {
-                        width: 1024,
-                        height: 0,
-                        crop: false,
-                        quality: 67,
-                        //rotate: 90,
-                        callback: function(dataUrl, width, height) {
-                            console.log(dataUrl.length);
-                            data.file = dataUrl;
-                            data.type = sendFile.type;
-                            data.size = data.file.length;
-                            console.log(data.file.length);
-                            socket.emit('upload', data);
-                        }
-                    });
+                    }else{
+                        // ImageResize
+                        $.canvasResize(sendFile, {
+                            width: 1024,
+                            height: 0,
+                            crop: false,
+                            quality: 67,
+                            //rotate: 90,
+                            callback: function(dataUrl, width, height) {
+                                console.log(dataUrl.length);
+                                data.file = dataUrl;
+                                data.type = sendFile.type;
+                                data.size = data.file.length;
+                                console.log(data.file.length);
+                                socket.emit('upload', data);
+                            }
+                        });
+                    }
                 });
             }),
             assetsRqst: (function(){
