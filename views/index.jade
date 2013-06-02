@@ -1,28 +1,35 @@
 extends layout
 
 block content
+  div(id="background-overlay")
+  div(id="background")
+    canvas(width="800", height="600", data-canvas-id="0", class="back-canvas")
+    canvas(width="800", height="600", data-canvas-id="1", class="back-canvas")
+    canvas(width="800", height="600", data-canvas-id="2", class="back-canvas")
+    canvas(width="800", height="600", data-canvas-id="3", class="back-canvas")
+    canvas(width="800", height="600", data-canvas-id="4", class="back-canvas")
+    canvas(width="800", height="600", data-canvas-id="5", class="back-canvas")
+    canvas(width="800", height="600", data-canvas-id="6", class="back-canvas")
+
   div(class="navbar")
     div(class="navbar-inner")
       div(class="container")
-        a(class="brand",href="/")= 'Glithappy'
- 
+        a(class="brand",href="/")= title
+
   div(class='container')
     div(class='row')
-      div(class='span8 offset2')
-        h1= 'Glitchappy'
+      div(class='span10 offset1')
+        div(class="front")
+          h1
+            img(id='logo')
     div(class='row')
-      div(class='span8 offset2', id='dropbox')
-        canvas(style="width: 100%;height: 500px;", data-canvas-id="0")
-        canvas(style="width: 100%;height: 500px;", data-canvas-id="1")
-        canvas(style="width: 100%;height: 500px;", data-canvas-id="2")
-        canvas(style="width: 100%;height: 500px;", data-canvas-id="3")
-        canvas(style="width: 100%;height: 500px;", data-canvas-id="4")
-
-      
-  // h1= title
-  // input(id="msg", type="text", value='')
-  // input(id='send', type='button', value='send')
-
-  // ul(id='log')
-    
-  
+      div(class='span10 offset1', id='dropbox')
+        div(class="front")
+          canvas(width="800", height="600", data-canvas-id="0", class="front-canvas")
+          canvas(width="800", height="600", data-canvas-id="1", class="front-canvas")
+          canvas(width="800", height="600", data-canvas-id="2", class="front-canvas")
+          canvas(width="800", height="600", data-canvas-id="3", class="front-canvas")
+          canvas(width="800", height="600", data-canvas-id="4", class="front-canvas")
+          canvas(width="800", height="600", data-canvas-id="5", class="front-canvas")
+          canvas(width="800", height="600", data-canvas-id="6", class="front-canvas")
+          

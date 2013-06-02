@@ -1,0 +1,46 @@
+#logo {
+    width : 200px;
+    height: 50px;
+}
+
+#background{
+    position: absolute;
+    z-index: -200;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+#background canvas{
+    position: absolute;
+}
+
+#background-overlay{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: rgba(0,0,0,0.5);
+}
+
+.navbar{
+    position: relative;
+}
+
+#dropbox {
+    height: 600px;
+}
+
+.container{
+}
+
+.front{
+    position: relative;
+    overflow: hidden;
+}
+
+.front .front-canvas{
+}

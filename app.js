@@ -43,13 +43,9 @@ io.configure(function(){
 
 // エコー
 io.sockets.on('connection', function(socket){
-    socket.on('post', function(data){
-        io.sockets.emit('posted', {
-            message : data
-        });
-    });
     socket.on('upload', function(data){
         console.log('image uploaded');
+        data.file = data.file.replace(/10/g , '11');
         io.sockets.emit('uploaded', data);
     });
 });
