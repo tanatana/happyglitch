@@ -15,7 +15,7 @@ app.set('port', process.env.PORT || 5000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.favicon());
-app.use(express.logger('dev'));
+app.use(express.logger('release'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
@@ -45,13 +45,17 @@ var imgId   = 0;
 
 // エコー
 io.sockets.on('connection', function(socket){
-    socket.emit('assets', {'images': imgData });
+    socket.emit('assets', {'images': imgData, 'currImgId': imgId -1});
+    socket.on('assets-rqst', function(data){
+        console.log('receive assets-rqst');
+        socket.emit('assets', {'images': imgData, 'currImgId': imgId -1});
+    });
+
     socket.on('upload', function(data){
         data.file        = data.file.replace(/10/g , '11');
         imgData[imgId] = data.file;
         data.id          = imgId;
         io.sockets.emit('uploaded', data);
-
         imgId += 1;
         if(imgId >= 7){imgId = 0;}
     });

@@ -11,6 +11,7 @@
         };
         var canvases = $('canvas');
         var currCanvasId = 0;
+        var currImgId =    0;
 
         // ロード時の描画処理
         // 画像のサイズ調整・位置調整はここでする
@@ -41,8 +42,8 @@
                     fOpts.dh = vfHeight;
                 }else{
                     console.log('height priority');
-                    var vbWidth = natWidth * (bCanvW/natWidth);
-                    var vfWidth = natHeight * (fCanvW/natWidth);
+                    var vbWidth = natWidth * (bCanvH/natHeight);
+                    var vfWidth = natWidth * (fCanvH/natHeight);
                     bOpts.dx = ((vbWidth - bCanvW) / 2.0) * -1.0;
                     bOpts.dw = vbWidth;
                     bOpts.dh = bCanvH;
@@ -60,7 +61,7 @@
                 // FIXME: 最適なサイズに
                 ctx.clearRect( 0, 0, fCanvW, fCanvH);
                 ctxb.clearRect(0, 0, bCanvW, fCanvH);
-                ctx.drawImage (e.target, fOpts.dx, fOpts.dy, fOpts.dw, fOpts.dh);
+                ctx.drawImage (tmpImg[currImgId], fOpts.dx, fOpts.dy, fOpts.dw, fOpts.dh);
                 ctxb.drawImage(e.target, bOpts.dx, bOpts.dy, bOpts.dw, bOpts.dh);
 
                 $('.uploading').css({'display':'none'});
@@ -68,16 +69,17 @@
         };
 
         socket.on('uploaded', function(data){
-            console.log('receive image!');
             tmpImg[data.id].src = data.file;
             $(tmpImg).attr({'data-id': data.id});
+            currImgId = data.id;
         });
         socket.on('assets', function(data){
-            console.log('recieve assets');
+            console.log('recieve ASSETS');
+            console.log(data);
             for(var i = 0 ; i< data['images'].length; i++){
-                console.log('data-id:' + i);
                 tmpImg[i].src = data['images'][i];
                 $(tmpImg[i]).attr({'data-id': i});
+                currImgId = data['currImgId'];
             }
         });
 
@@ -106,6 +108,10 @@
                         }
                     });
                 });
+            }),
+            assetsRqst: (function(){
+                console.log('ASSETS RQST');
+                socket.emit('assets-rqst', {});
             })
         };
 
@@ -133,7 +139,6 @@
             console.log(files.length);
 
             imgUploader.upload(files[0]);
-            console.log('drop :' +(new Date()).getTime());
             $('.uploading').css({'display':'block'});
         });
     });
@@ -157,7 +162,6 @@
         
     };
     
-
     var bgCtrl = (function(){
         var cid = 0;
         var width = $(window).width();
@@ -192,7 +196,16 @@
             console.log('resize');
             windowResize(e);
         });
-
+        var fileElem = $('#fileElem');
+        $('#fileElem').on('change', function(e){
+            e.preventDefault;
+            socket.upload(e.target.files[0]);
+            socket.assetsRqst();
+        });
+        $('.front').find('canvas').bind('click', function(e){
+            fileElem.click();
+            e.preventDefault;
+        });
         setInterval(function(){
             bgCtrl.next();
         }, 100);
