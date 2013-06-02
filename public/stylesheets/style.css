@@ -50,3 +50,16 @@
 
 .front .front-canvas{
 }
+
+.front #drophere {
+    display: none;
+    position: absolute;
+    top: 0px;
+    background: rgba(0,0,0,0.8);
+}
+
+.front #drophere-inner {
+    font-size: 32px;
+    color: #fff;
+    text-align: center;
+}

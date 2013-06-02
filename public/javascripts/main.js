@@ -124,6 +124,7 @@
             e.stopPropagation();
             e.preventDefault();
             console.log('dragenter');
+            $('#drophere').css({'display': 'block'});
         });
         dropbox.bind('dragover', function(e){
             e.stopPropagation();
@@ -133,6 +134,7 @@
         dropbox.bind('drop', function(e){
             e.stopPropagation();
             e.preventDefault();
+            $('#drophere').css({'display': 'none'});
 
             var dt = e.dataTransfer;
             var files = dt.files;
@@ -154,11 +156,12 @@
                                  'height':  height});
         $('.front-canvas').css({'width':  innerWidth,
                                  'height':  innerHeight});
-
         $('#background').find('canvas').attr({'width':  width,
                                               'height':  height});
         $('#background').find('canvas').css({'width':  width,
                                               'height':  height});
+        $('#drophere').css({'width':  innerWidth,
+                            'height':  innerHeight});
         
     };
     
@@ -191,6 +194,10 @@
         jQuery.event.props.push('dataTransfer');
 
         windowResize();
+
+        $(document).bind('touchmove', function(e){
+            e.preventDefault();
+        });
         
         var socket = SocketCtrl();
         var dropbox = Dropbox(socket);
