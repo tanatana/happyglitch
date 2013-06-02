@@ -31,7 +31,6 @@
                 // キャンバスアスペクト比による補正
                 if ((bCanvH / bCanvW) <= 1.0){
                     console.log('width priority');
-                    console.log(fCanvW,natWidth);
                     var vbHeight = natHeight * (bCanvW/natWidth);
                     var vfHeight = natHeight * (fCanvW/natWidth);
                     bOpts.dy = ((vbHeight - bCanvH) / 2.0) * -1.0;
@@ -46,10 +45,10 @@
                     var vfWidth = natHeight * (fCanvW/natWidth);
                     bOpts.dx = ((vbWidth - bCanvW) / 2.0) * -1.0;
                     bOpts.dw = vbWidth;
-                    bOpts.dh = bCanvW;
+                    bOpts.dh = bCanvH;
                     fOpts.dx = ((vfWidth - fCanvW) / 2.0) * -1.0;
                     fOpts.dw = vfWidth;
-                    fOpts.dh = fCanvW;
+                    fOpts.dh = fCanvH;
                 };
 
                 console.log(fOpts.dx+', '+fOpts.dy+', '+fOpts.dw+', '+fOpts.dh);
@@ -63,6 +62,8 @@
                 ctxb.clearRect(0, 0, bCanvW, fCanvH);
                 ctx.drawImage (e.target, fOpts.dx, fOpts.dy, fOpts.dw, fOpts.dh);
                 ctxb.drawImage(e.target, bOpts.dx, bOpts.dy, bOpts.dw, bOpts.dh);
+
+                $('.uploading').css({'display':'none'});
             });
         };
 
@@ -133,6 +134,7 @@
 
             imgUploader.upload(files[0]);
             console.log('drop :' +(new Date()).getTime());
+            $('.uploading').css({'display':'block'});
         });
     });
 
@@ -164,7 +166,7 @@
                 cid = cid + 1;
                 if(cid >= 7){ cid = 0; }
                 $('#background').find('canvas').css({
-                    'transform': 'translateX('+width+'px)'
+                    'transform': 'translateX('+width*2+'px)'
                 });
                 $('#background').find('[data-canvas-id="' + cid +'"]').css({
                     'transform': 'translateX(0px)'
