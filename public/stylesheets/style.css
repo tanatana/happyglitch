@@ -63,3 +63,13 @@
     color: #fff;
     text-align: center;
 }
+.loading{
+    display: none;
+    position: absolute;
+    top: 8px;
+    right: 7px;
+    height: 0.7em;    
+    text-align: right;
+    color: #fff;
+    font-size: 32px;
+}

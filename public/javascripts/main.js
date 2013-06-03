@@ -64,7 +64,7 @@
                 ctx.drawImage (tmpImg[currImgId], fOpts.dx, fOpts.dy, fOpts.dw, fOpts.dh);
                 ctxb.drawImage(e.target, bOpts.dx, bOpts.dy, bOpts.dw, bOpts.dh);
 
-                $('.uploading').css({'display':'none'});
+                $('.loading').css({'display':'none'});
             });
         };
 
@@ -91,7 +91,7 @@
                 fileReader.onload = (function(e){
                     console.log('fr.onload :' + (new Date()).getTime());
                     if(sendFile.type != "image/jpeg"){
-
+                        alert('please selet jpeg image!');
                     }else{
                         // ImageResize
                         $.canvasResize(sendFile, {
@@ -144,7 +144,7 @@
             console.log(files.length);
 
             imgUploader.upload(files[0]);
-            $('.uploading').css({'display':'block'});
+            $('.loading').css({'display':'block'});
         });
     });
 
