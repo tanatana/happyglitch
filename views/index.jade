@@ -47,3 +47,45 @@ block content
           <a href="http://tana.hatenablog.com/" target="_blank">リリースノート</a>
       div(class="modal-footer")
         a(href="#",class="btn close-btn", data-dismiss="modal")='Close'
+
+    div(class="modal hide fade",id="howToUse",role="dialog",aria-labelledby="myModalLabel",aria-hidden="true")
+      h2='遊び方'
+      div(class="modal-body visible-desktop")
+        p
+          JPGファイルをドラッグ&ドロップするとその画像がグリッチされます．<br>
+          他のパソコン・スマートフォンで表示しているこのページでもその画像が表示されます．（しばらく見ていると突然画像が切り替わるでしょう，それはどこかのだれかがグリッチした画像です!）<br>
+          <br>
+          <a href="http://tana.hatenablog.com/" target="_blank">リリースノート</a>
+      div(class="modal-body hidden-desktop")
+        p
+          中央の画面をタップして写真を選択するか撮影すると，その画像がグリッチされます．<br>
+          他のパソコン・スマートフォンで表示しているこのページでもその画像が表示されます．（しばらく見ていると突然画像が切り替わるでしょう，それはどこかのだれかがグリッチした画像です!）<br>
+          <a href="http://tana.hatenablog.com/" target="_blank">リリースノート</a>
+      div(class="modal-footer")
+        a(href="#",class="btn close-btn", data-dismiss="modal")='Close'
+        
+    div(class="modal hide fade",id="howToUse",role="dialog",aria-labelledby="myModalLabel",aria-hidden="true")
+      h2='遊び方'
+      div(class="modal-body visible-desktop")
+        p
+          JPGファイルをドラッグ&ドロップするとその画像がグリッチされます．<br>
+          他のパソコン・スマートフォンで表示しているこのページでもその画像が表示されます．（しばらく見ていると突然画像が切り替わるでしょう，それはどこかのだれかがグリッチした画像です!）<br>
+          <br>
+          <a href="http://tana.hatenablog.com/" target="_blank">リリースノート</a>
+      div(class="modal-body hidden-desktop")
+        p
+          中央の画面をタップして写真を選択するか撮影すると，その画像がグリッチされます．<br>
+          他のパソコン・スマートフォンで表示しているこのページでもその画像が表示されます．（しばらく見ていると突然画像が切り替わるでしょう，それはどこかのだれかがグリッチした画像です!）<br>
+          <a href="http://tana.hatenablog.com/" target="_blank">リリースノート</a>
+      div(class="modal-footer")
+        a(href="#",class="btn close-btn", data-dismiss="modal")='Close'
+
+    div(class="modal hide fade",id="useJPEG",role="dialog",aria-labelledby="myModalLabel",aria-hidden="true")
+      h2='JPEG画像にして!'
+      div(class="modal-body")
+        p
+          申し訳ありません，まだJPEG画像しか対応してないの;-( <br>
+          大丈夫! ImageMagickがあれば簡単に変換できます!<br>
+          $ convert your_image.png glitch.jpg
+      div(class="modal-footer")
+        a(href="#",class="btn close-btn", data-dismiss="modal")='Close'

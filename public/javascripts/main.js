@@ -86,16 +86,15 @@
 
         var global = {
             upload: (function(sendFile){
-                $('.loading').css({'display':'block'});
-
                 var fileReader = new FileReader();
                 var data = {};
                 fileReader.readAsDataURL(sendFile);
                 fileReader.onload = (function(e){
                     console.log('fr.onload :' + (new Date()).getTime());
                     if(sendFile.type != "image/jpeg"){
-                        alert('please selet jpeg image!');
+                        JpegAlert.show();
                     }else{
+                        $('.loading').css({'display':'block'});
                         // ImageResize
                         $.canvasResize(sendFile, {
                             width: 1024,
@@ -147,7 +146,6 @@
             console.log(files.length);
 
             imgUploader.upload(files[0]);
-            $('.loading').css({'display':'block'});
         });
     });
 
@@ -206,6 +204,24 @@
             }),
             hide: (function(){
                 $('#howToUse').modal('hide');
+            })
+            
+        };
+        return global;
+    })();
+
+    var JpegAlert = (function(){
+        console.log($('#useJPEG').find('.close-btn'));
+        $('#useJPEG').find('.close-btn').bind('click',function(e){
+            e.preventDefault();
+            global.hide();
+        });
+        var global = {
+            show: (function(){
+                $('#useJPEG').modal('show');
+            }),
+            hide: (function(){
+                $('#useJPEG').modal('hide');
             })
             
         };
