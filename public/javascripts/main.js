@@ -197,7 +197,8 @@
         console.log($('#howToUse').find('.close-btn'));
         $('#howToUse').find('.close-btn').bind('click',function(e){
             e.preventDefault();
-            $('#howToUse').modal('hide');
+            global.hide();
+            // $('#howToUse').modal('hide');
         });
         var global = {
             show: (function(){
