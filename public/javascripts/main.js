@@ -73,6 +73,7 @@
             $(tmpImg).attr({'data-id': data.id});
             currImgId = data.id;
         });
+        
         socket.on('assets', function(data){
             console.log('recieve ASSETS');
             console.log(data);
@@ -85,6 +86,8 @@
 
         var global = {
             upload: (function(sendFile){
+                $('.loading').css({'display':'block'});
+
                 var fileReader = new FileReader();
                 var data = {};
                 fileReader.readAsDataURL(sendFile);
