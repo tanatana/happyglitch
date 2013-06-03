@@ -101,7 +101,7 @@
                             width: 1024,
                             height: 0,
                             crop: false,
-                            quality: 67,
+                            quality: 65,
                             //rotate: 90,
                             callback: function(dataUrl, width, height) {
                                 console.log(dataUrl.length);
@@ -192,8 +192,27 @@
         };
         return global;
     })();
+
+    var Howtouse = (function(){
+        console.log($('#howToUse').find('.close-btn'));
+        $('#howToUse').find('.close-btn').bind('click',function(e){
+            e.preventDefault();
+            $('#howToUse').modal('hide');
+        });
+        var global = {
+            show: (function(){
+                $('#howToUse').modal('show');
+            }),
+            hide: (function(){
+                $('#howToUse').modal('hide');
+            })
+            
+        };
+        return global;
+    })();
     
     $(document).ready(function(){
+        Howtouse.show();
         var logosrc = '/images/logo'+ Math.floor( Math.random() * 6 ) + '.jpg';
         $('#logo').attr({'src': logosrc});
         // for File API

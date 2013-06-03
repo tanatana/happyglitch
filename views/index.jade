@@ -30,3 +30,13 @@ block content
               p='ここにドロップ'
           div(class="loading")= '* LOADING'
           input(type="file",id="fileElem",accept="image/jpeg",style="display:none;")
+
+
+    div(class="modal hide fade",id="howToUse",role="dialog",aria-labelledby="myModalLabel",aria-hidden="true")
+      h2='遊び方'
+      div(class="modal-body visible-desktop")
+        p='JPGファイルをドラッグ&ドロップ'
+      div(class="modal-body hidden-desktop")
+        p='画面中央をタップ'
+      div(class="modal-footer")
+        a(href="#",class="btn close-btn", data-dismiss="modal")='Close'
