@@ -84,6 +84,10 @@
             }
         });
 
+        socket.on('viewers', function(data){
+            $('.viewer-num').text(data.people+' 人が見ています');
+        });
+
         var global = {
             upload: (function(sendFile){
                 var fileReader = new FileReader();

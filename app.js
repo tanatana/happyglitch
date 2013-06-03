@@ -41,10 +41,13 @@ var io = require('socket.io').listen(server, {'log level': 1});
 
 var imgData = [];
 var imgId   = 0;
+var viewers = 0;
 
 // エコー
 io.sockets.on('connection', function(socket){
-    socket.emit('assets', {'images': imgData, 'currImgId': imgId -1});
+    viewers += 1;
+    io.sockets.emit('viewers', {'people': viewers});
+    socket.emit('assets', {'images': imgData, 'currImgId': imgId - 1});
     socket.on('assets-rqst', function(data){
         console.log('receive assets-rqst');
         socket.emit('assets', {'images': imgData, 'currImgId': imgId -1});
@@ -57,5 +60,9 @@ io.sockets.on('connection', function(socket){
         io.sockets.emit('uploaded', data);
         imgId += 1;
         if(imgId >= 7){imgId = 0;}
+    });
+    socket.on('disconnect', function(data){
+        viewers -= 1;
+        io.sockets.emit('viewers', {'people': viewers});
     });
 });

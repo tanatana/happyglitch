@@ -63,6 +63,7 @@
     color: #fff;
     text-align: center;
 }
+
 .loading{
     display: none;
     position: absolute;
@@ -73,3 +74,16 @@
     color: #fff;
     font-size: 32px;
 }
+
+#viewer{
+    color: #fff;
+    font-weight: bold;
+    font-size: 120%;
+}
+
+#viewer-mob{
+    position: absolute;
+    top: 50px;
+    z-index:100;
+    color: #fff;
+ }

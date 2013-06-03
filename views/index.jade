@@ -29,8 +29,11 @@ block content
               br
               p='ここにドロップ'
           div(class="loading")= '* LOADING'
+          div(class="viewer-num visible-desktop", id="viewer")
           input(type="file",id="fileElem",accept="image/jpeg",style="display:none;")
+        div(class="viewer-num",id="viewer-mob")
 
+    
 
     div(class="modal hide fade",id="howToUse",role="dialog",aria-labelledby="myModalLabel",aria-hidden="true")
       h2='遊び方'
